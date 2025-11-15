@@ -1,10 +1,21 @@
-import { headers, cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-async function getServerFresh() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL ?? ""}/api/demo`, { cache: "no-store" });
+type DemoPayload = {
+  ts: string;
+  value: number;
+};
+
+function resolveBaseUrl(): string {
+  if (process.env.NEXT_PUBLIC_BASE_URL) return process.env.NEXT_PUBLIC_BASE_URL;
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+  return "http://localhost:3000";
+}
+
+async function getServerFresh(): Promise<DemoPayload> {
+  const res = await fetch(`${resolveBaseUrl()}/api/demo`, { cache: "no-store" });
   if (!res.ok) throw new Error("Upstream failed");
   return res.json();
 }

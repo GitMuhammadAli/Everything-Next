@@ -1,15 +1,26 @@
 export const revalidate = 60;
 
-async function getPage(slug) {
-  const data = {
+type ISRPayload = {
+  slug: string;
+  updatedAt: string;
+  note: string;
+};
+
+async function getPage(slug: string): Promise<ISRPayload> {
+  return {
     slug,
     updatedAt: new Date().toISOString(),
     note: "Static shell; regenerates in background after revalidate window.",
   };
-  return data;
 }
 
-export default async function ISRPage({ params }) {
+type ISRPageProps = {
+  params: {
+    slug: string;
+  };
+};
+
+export default async function ISRPage({ params }: ISRPageProps) {
   const data = await getPage(params.slug);
   return (
     <section>

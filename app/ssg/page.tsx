@@ -1,6 +1,10 @@
-async function getData() {
-  const data = { builtAt: new Date().toISOString(), note: "Static at build" };
-  return data;
+type StaticData = {
+  builtAt: string;
+  note: string;
+};
+
+async function getData(): Promise<StaticData> {
+  return { builtAt: new Date().toISOString(), note: "Static at build" };
 }
 
 export default async function SSGPage() {

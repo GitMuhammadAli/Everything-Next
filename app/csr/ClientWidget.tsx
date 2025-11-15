@@ -1,8 +1,13 @@
 "use client";
 import { useEffect, useState } from "react";
 
+type DemoPayload = {
+  ts: string;
+  value: number;
+};
+
 export default function ClientWidget() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<DemoPayload | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
