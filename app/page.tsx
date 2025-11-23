@@ -4,6 +4,7 @@ export default function HomePage() {
     { href: "/ssr", label: "Server-Side Rendering (SSR)" },
     { href: "/csr", label: "Client-Side Rendering (CSR)" },
     { href: "/isr/example", label: "Incremental Static Regeneration (ISR)" },
+    {href: "/news", label: "News"},
   ];
 
   return (
