@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: "Side-by-side examples of the major Next.js rendering paradigms.",
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({ children, modal }: { children: ReactNode; modal: ReactNode }) {
   return (
     <html lang="en">
       <body className="p-8 space-y-6">
@@ -18,9 +18,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <Link href="/ssr" className="hover:text-red-800">SSR</Link>
             <Link href="/csr" className="hover:text-red-800">CSR</Link>
             <Link href="/isr/example" className="hover:text-red-800">ISR</Link>
+            <Link href="/news" className="hover:text-red-800">News</Link>
           </div>
         </nav>
         {children}
+        {modal}
       </body>
     </html>
   );
