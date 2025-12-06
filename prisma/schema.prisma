@@ -79,3 +79,19 @@ model ResetToken {
   @@index([userId])
 }
 
+model Article {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  title     String
+  excerpt   String?  @db.Text
+  content   String   @db.Text
+  image     String?
+  date      DateTime @default(now())
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([slug])
+  @@index([published, date])
+}
+
