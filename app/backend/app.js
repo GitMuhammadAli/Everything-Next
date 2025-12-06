@@ -75,10 +75,14 @@ const app = express();
 app.use(cors())
 
 app.get('/news', (req, res) => {
-  const news = db.prepare('SELECT * FROM news').all();
-  res.json(news);
+  // const news = db.prepare('SELECT * FROM news').all();
+  res.json(DUMMY_NEWS);
 });
 
-initDb();
+// initDb();
 
-app.listen(8080);
+const ap = app.listen(8080);
+
+if(ap){
+  console.log('Server is running on http://localhost:8080');
+}
